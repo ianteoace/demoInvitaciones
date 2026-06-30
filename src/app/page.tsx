@@ -18,12 +18,11 @@ type FormState = {
   comment: string;
 };
 
-const EVENT_DATE = new Date("2026-09-20T00:00:00-03:00");
-const EVENT_LOCATION_URL = "https://maps.app.goo.gl/CeZLDXsPKcGuo7yp8?g_st=iw";
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzygl9nqKPH1LpDtI8nAMt-GjHw5o3pybdb7cE2vBRCzoKynze342m7mzL59xN4OygdAg/exec";
-const SPOTIFY_PLAYLIST_URL =
-  "https://open.spotify.com/playlist/023GVm0XvpcOjVyyOGfCDX?si=LV6Y63PHRxWhHJDdLCNUyA&pi=053bdM8ERUWDE&pt=adb021f0afb06a805f3ab62728d2ff4e";
+const EVENT_DATE = new Date("2026-11-15T00:00:00-03:00");
+const EVENT_LOCATION_URL = "#";
+const GOOGLE_SCRIPT_URL = "";
+const IS_DEMO_MODE = true;
+const SPOTIFY_PLAYLIST_URL = "#";
 
 const initialFormState: FormState = {
   fullName: "",
@@ -34,46 +33,40 @@ const initialFormState: FormState = {
 
 const galleryImages = [
   {
-    src: "/gallery/MBS_5020.jpg",
-    alt: "Foto de Manu y Ruthi 1",
-    width: 2667,
-    height: 4000,
+    src: "/gallery/demo-pareja.jpg",
+    alt: "Foto editorial de Sofía y Mateo",
+    width: 600,
+    height: 900,
   },
   {
-    src: "/gallery/MBS_4916.jpg",
-    alt: "Foto de Manu y Ruthi 2",
-    width: 2667,
-    height: 4000,
+    src: "/gallery/demo-mesa.jpg",
+    alt: "Mesa de boda con velas y flores blancas",
+    width: 736,
+    height: 1104,
   },
   {
-    src: "/gallery/MBS_5006.jpg",
-    alt: "Foto de Manu y Ruthi 4",
-    width: 4000,
-    height: 2667,
+    src: "/gallery/demo-copas.jpeg",
+    alt: "Copas grabadas para el brindis",
+    width: 365,
+    height: 547,
   },
   {
-    src: "/gallery/MBS_4930.jpg",
-    alt: "Foto de Manu y Ruthi 5",
-    width: 2667,
-    height: 4000,
+    src: "/gallery/demo-anillos.jpeg",
+    alt: "Anillos sobre madera con flores suaves",
+    width: 678,
+    height: 452,
   },
   {
-    src: "/gallery/MBS_5057.jpg",
-    alt: "Foto de Manu y Ruthi 7",
-    width: 4000,
-    height: 2667,
+    src: "/gallery/demo-ramo.jpeg",
+    alt: "Ramo en tonos nude y blanco",
+    width: 638,
+    height: 480,
   },
   {
-    src: "/gallery/MBS_4991.jpg",
-    alt: "Foto de Manu y Ruthi 6",
-    width: 2667,
-    height: 4000,
-  },
-  {
-    src: "/gallery/MBS_5046.jpg",
-    alt: "Foto de Manu y Ruthi 8",
-    width: 2667,
-    height: 4000,
+    src: "/gallery/demo-salon.jpeg",
+    alt: "Salón de boda con arcos de piedra y araña central",
+    width: 494,
+    height: 404,
   },
 ];
 
@@ -208,6 +201,14 @@ export default function Home() {
     setError(false);
 
     try {
+      if (IS_DEMO_MODE || !GOOGLE_SCRIPT_URL) {
+        await new Promise((resolve) => window.setTimeout(resolve, 500));
+        setSuccess(true);
+        setError(false);
+        setFormState(initialFormState);
+        return;
+      }
+
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         headers: {
@@ -262,7 +263,7 @@ export default function Home() {
             <div className="absolute inset-0">
               <img
                 src="/hero/pareja.jpg"
-                alt="Ruth y Manu"
+                alt="Sofía y Mateo"
                 className="h-full w-full object-cover object-[58%_center] sm:object-center"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,248,241,0.10),rgba(255,248,241,0.34)_35%,rgba(255,248,241,0.62)_65%,rgba(255,248,241,0.82))]" />
@@ -271,10 +272,10 @@ export default function Home() {
             <div className="relative z-10 mx-auto flex min-h-[620px] max-w-3xl flex-col items-center justify-center sm:min-h-[70svh]">
               <div className="text-center">
                 <h1 className="mt-3 font-serif-display text-5xl leading-none tracking-[-0.04em] text-[var(--color-ink)] sm:mt-4 sm:text-7xl lg:text-8xl">
-                  Manu <span className="text-[0.72em]">&amp;</span> Ruthi
+                  Sofía <span className="text-[0.72em]">&amp;</span> Mateo
                 </h1>
                 <p className="mt-4 text-xs font-semibold tracking-[0.24em] text-[var(--color-ink)] sm:mt-5 sm:text-base sm:tracking-[0.32em]">
-                  20 · 09 · 2026
+                  15 · 11 · 2026
                 </p>
                 <p className="mx-auto mt-6 max-w-[20rem] whitespace-pre-line font-verse text-[15px] leading-6 text-[color:rgba(74,46,42,0.82)] sm:mt-8 sm:max-w-4xl sm:text-lg sm:leading-8">
                   {"Cantares 8:7\n¡No hay mares que puedan apagarlo, ni ríos que puedan extinguirlo!\nSi alguien se atreviera a ofrecer todas sus riquezas a cambio del amor, no recibiría más que desprecio"}
@@ -346,7 +347,7 @@ export default function Home() {
                       Ceremonia
                     </h2>
                     <p className="mt-4 text-sm leading-7 text-[color:rgba(74,46,42,0.76)] sm:text-base">
-                      La ceremonia será el domingo 20 de septiembre de 2026 a las 12:00 hs
+                      La ceremonia será el domingo 15 de noviembre de 2026 a las 12:00 hs
                     </p>
                     <div className="mt-8 hidden lg:flex items-center justify-center gap-3 text-[var(--color-champagne)]">
                       <span className="h-px w-12 bg-[rgba(217,181,109,0.45)]" />
@@ -365,15 +366,13 @@ export default function Home() {
                     </div>
                     <a
                       href={EVENT_LOCATION_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="mt-5 inline-flex min-h-12 items-center justify-center self-center rounded-full border border-[rgba(217,181,109,0.34)] bg-white/28 px-5 text-sm font-medium text-[var(--color-ink)] transition hover:bg-white/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-champagne)] sm:mt-6 sm:px-6"
                     >
-                      Cómo llegar
+                      Ver ubicación demo
                     </a>
                     <p className="mt-6 text-sm leading-7 text-[color:rgba(74,46,42,0.78)] sm:text-base">
                       <span className="font-semibold text-[var(--color-ink)]">Lugar:</span>{" "}
-                      Jano&apos;s Eventos
+                      Espacio Magnolia
                     </p>
                     <div className="mt-8 hidden lg:flex items-center justify-center gap-3 text-[var(--color-champagne)]">
                       <span className="h-px w-12 bg-[rgba(217,181,109,0.45)]" />
@@ -391,7 +390,7 @@ export default function Home() {
               <section className="px-4 pb-3 pt-12 sm:px-8 sm:pb-6 sm:pt-16 lg:px-12">
                 <div className="mx-auto max-w-2xl text-center">
                   <h2 className="font-serif-display text-4xl tracking-tight text-[var(--color-ink)] sm:text-5xl">
-                    Un adelanto de nuestro día
+                    Un adelanto del gran día
                   </h2>
                 </div>
                 <SectionOrnament />
@@ -406,28 +405,26 @@ export default function Home() {
 
           <Reveal delay={120}>
             <section className="px-4 py-12 sm:px-8 sm:py-16 lg:px-12">
-              <SectionHeading
-                title="Dress Code"
-                description="El código de vestimenta de nuestra boda será Formal de día. Te dejamos un link con algunas ideas e inspiración para ayudarte a elegir tu look."
+                <SectionHeading
+                  title="Dress Code"
+                description="El código de vestimenta de esta celebración será formal de día. Te dejamos una referencia visual para inspirarte y ayudarte a elegir tu look."
               />
                 <SectionOrnament />
 
                 <div className="mx-auto mt-10 max-w-3xl text-center">
                   <a
-                    href="/dresscode_ruth_manu.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
                     className="inline-flex min-h-14 items-center justify-center rounded-full border border-[rgba(201,138,148,0.24)] bg-[rgba(255,255,255,0.34)] px-8 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-blush-deep)] shadow-[0_14px_34px_rgba(93,63,59,0.05)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/46 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-champagne)]"
                   >
-                    Ver dress code
+                    Ver dress code demo
                   </a>
 
                   <div className="mx-auto mt-7 max-w-2xl rounded-[1.5rem] border border-[rgba(201,138,148,0.16)] bg-[rgba(255,255,255,0.3)] px-4 py-4 backdrop-blur-sm sm:px-5">
                     <p className="text-sm leading-7 text-[color:rgba(74,46,42,0.82)]">
-                    Para las mujeres, por favor evitar blanco y rosa pastel.
+                    Para quienes prefieran tonos claros, sugerimos evitar el blanco pleno.
                   </p>
                   <p className="mt-2 text-sm leading-7 text-[color:rgba(74,46,42,0.72)]">
-                    Queremos que te sientas cómodo/a y listo/a para celebrar con nosotros.
+                    Queremos que te sientas cómodo/a, elegante y listo/a para celebrar junto a Sofía y Mateo.
                   </p>
                 </div>
               </div>
@@ -447,9 +444,7 @@ export default function Home() {
                 <div className="mx-auto mt-10 max-w-3xl text-center">
                   <div className="flex flex-col items-center justify-center gap-4">
                     <a
-                      href="https://docs.google.com/spreadsheets/d/1LeQDalvXk_aKwTNyjRtYT8lVGYgN2xMIZUiEQ2uQMMU/edit?gid=780535404#gid=780535404"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#"
                       className="inline-flex min-h-14 items-center justify-center rounded-full border border-[rgba(201,138,148,0.24)] bg-[rgba(255,255,255,0.34)] px-8 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-blush-deep)] shadow-[0_14px_34px_rgba(93,63,59,0.05)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/46 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-champagne)]"
                     >
                       Ver lista de regalos
@@ -479,8 +474,8 @@ export default function Home() {
                       <span className="text-lg leading-none">♪</span>
                     </div>
                   <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[color:rgba(74,46,42,0.76)] sm:max-w-2xl sm:text-base">
-                    Puedes recomendar canciones o artistas que no pueden faltar
-                    en la boda.
+                    Podés recomendar canciones o artistas que no pueden faltar
+                    en la fiesta.
                   </p>
                 </div>
                 <SectionOrnament />
@@ -488,11 +483,9 @@ export default function Home() {
                 <div className="mx-auto mt-8 max-w-2xl rounded-[1.5rem] border border-[rgba(201,138,148,0.16)] bg-[rgba(255,253,248,0.52)] px-4 py-5 text-center shadow-[0_18px_44px_rgba(93,63,59,0.05)] backdrop-blur-sm sm:rounded-[1.75rem] sm:px-8 sm:py-6">
                   <a
                     href={SPOTIFY_PLAYLIST_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-flex min-h-14 items-center justify-center rounded-full border border-[rgba(201,138,148,0.24)] bg-[rgba(255,255,255,0.5)] px-8 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-blush-deep)] shadow-[0_14px_34px_rgba(93,63,59,0.05)] transition hover:-translate-y-0.5 hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-champagne)]"
                   >
-                    Sumar canción en Spotify
+                    Playlist demo de Spotify
                   </a>
                 </div>
               </section>
@@ -504,7 +497,7 @@ export default function Home() {
                 <section className="px-4 py-12 sm:px-8 sm:py-16 lg:px-12">
                   <SectionHeading
                     title="Confirmación"
-                    description="Nos ayuda muchísimo contar con tu respuesta. Podés completar este formulario para dejarnos tu confirmación hasta el 6 de septiembre."
+                    description="Nos ayuda muchísimo contar con tu respuesta. Podés completar este formulario para dejarnos tu confirmación hasta el 1 de noviembre."
                   />
                 <SectionOrnament />
 
@@ -523,7 +516,7 @@ export default function Home() {
                           }
                           disabled={isSubmitting}
                           className="w-full rounded-2xl border border-white/50 bg-[rgba(255,255,255,0.62)] px-4 py-3 text-base outline-none transition focus:border-[rgba(217,181,109,0.72)] focus:ring-4 focus:ring-[rgba(217,181,109,0.14)]"
-                          placeholder="Emanuel Amador"
+                          placeholder="Sofía Martínez"
                         />
                     </label>
 
@@ -592,7 +585,7 @@ export default function Home() {
 
                       {success ? (
                         <p className="text-center text-sm font-medium text-[var(--color-blush-deep)]">
-                          Gracias por confirmar tu asistencia.
+                          Gracias por confirmar tu asistencia. Esta es una versión demo.
                         </p>
                       ) : null}
 
@@ -620,7 +613,7 @@ export default function Home() {
                   En este día especial que queremos compartir junto con vos
                 </p>
                 <p className="mt-6 font-serif-display text-4xl text-[var(--color-ink)] sm:text-5xl">
-                  Manu &amp; Ruthi
+                  Sofía &amp; Mateo
                 </p>
               </footer>
             </Reveal>
@@ -638,10 +631,10 @@ export default function Home() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h3 className="font-serif-display text-3xl text-[var(--color-ink)]">
-                  Datos bancarios
+                  Datos de regalo demo
                 </h3>
                 <p className="mt-2 text-sm text-[color:rgba(74,46,42,0.72)]">
-                  Podés usar estos datos para tu regalo.
+                  Podés usar estos datos ficticios como referencia visual.
                 </p>
               </div>
               <button
@@ -656,19 +649,18 @@ export default function Home() {
 
             <div className="mt-6 space-y-4 text-left text-[color:rgba(74,46,42,0.84)]">
               <p>
-                <span className="font-semibold">Nombre del titular:</span> Emanuel
-                Ignacio Amador Sinturion
+                <span className="font-semibold">Nombre del titular:</span> Sofía
+                Martinez
               </p>
               <p>
-                <span className="font-semibold">Banco:</span> Banco de la Ciudad
-                de Buenos Aires
+                <span className="font-semibold">Banco:</span> Banco Demo
               </p>
               <p>
                 <span className="font-semibold">Número de CBU:</span>{" "}
-                0290000110000639971839
+                0000000000000000000000
               </p>
               <p>
-                <span className="font-semibold">Alias:</span> boda.manuyruthi
+                <span className="font-semibold">Alias:</span> sofia.mateo.demo
               </p>
             </div>
           </div>

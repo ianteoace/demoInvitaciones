@@ -28,14 +28,14 @@ const reciaRegular = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://manuyruthi.up.railway.app"),
-  title: "Manu & Ruth | Invitación",
-  description: "Invitación web de casamiento para Manu y Ruth",
+  metadataBase: new URL("https://demo-invitacion.example"),
+  title: "Sofía & Mateo | Invitación Demo",
+  description: "Modelo demo de invitación web de casamiento",
   openGraph: {
-    title: "Manu & Ruth | Invitación",
-    description: "Invitación web de casamiento para Manu y Ruth",
-    url: "https://manuyruthi.up.railway.app",
-    siteName: "Manu & Ruth | Invitación",
+    title: "Sofía & Mateo | Invitación Demo",
+    description: "Modelo demo de invitación web de casamiento",
+    url: "https://demo-invitacion.example",
+    siteName: "Sofía & Mateo | Invitación Demo",
     images: [
       {
         url: "/hero/pareja.jpg",
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manu & Ruth | Invitación",
-    description: "Invitación web de casamiento para Manu y Ruth",
+    title: "Sofía & Mateo | Invitación Demo",
+    description: "Modelo demo de invitación web de casamiento",
     images: ["/hero/pareja.jpg"],
   },
 };
