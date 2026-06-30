@@ -1,0 +1,81 @@
+﻿@import "tailwindcss";
+
+:root {
+  --background: #ddcbb0;
+  --foreground: #4a2e2a;
+  --color-cream: #ddcbb0;
+  --color-panel: rgba(255, 255, 255, 0.52);
+  --color-panel-soft: rgba(255, 248, 241, 0.62);
+  --color-blush: #c98a94;
+  --color-blush-deep: #9f5f68;
+  --color-ink: #4a2e2a;
+  --color-champagne: #d9b56d;
+  --color-beige: #ead8c5;
+  --shadow-soft: 0 18px 60px rgba(93, 63, 59, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif-display: var(--font-cormorant);
+  --font-verse: var(--font-recia-regular);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 12%, rgba(201, 138, 148, 0.18), transparent 28%),
+    radial-gradient(circle at 88% 14%, rgba(217, 181, 109, 0.14), transparent 20%),
+    radial-gradient(circle at 50% 55%, rgba(234, 216, 197, 0.24), transparent 28%),
+    radial-gradient(circle at 10% 82%, rgba(201, 138, 148, 0.08), transparent 18%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0)),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(201, 138, 148, 0.34);
+  color: var(--color-ink);
+}
+
+.glass-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 248, 241, 0.42)),
+    var(--color-panel);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.premium-grid {
+  background-image:
+    linear-gradient(rgba(159, 95, 104, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(159, 95, 104, 0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
